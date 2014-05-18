@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Frameworks">
+      <UniqueIdentifier>{5dcd16e2-e714-4956-9f74-4e26ff8313fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Maintanance">
+      <UniqueIdentifier>{24558327-dee9-4a0f-b249-a67f54cb7cd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{6b00bcb3-f435-4e39-b6e5-6b3fa200bc3d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>_Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="MonkeyProject_OgreBasics.cpp">
+      <Filter>_Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="OgreFramework.cpp">
+      <Filter>Frameworks</Filter>
+    </ClCompile>
+    <ClCompile Include="_LinkLibraries.cpp">
+      <Filter>_Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="MonkeyScene.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="OgreFramework.h">
+      <Filter>Frameworks</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSubscriber.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="MonkeyScene.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

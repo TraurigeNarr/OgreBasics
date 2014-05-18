@@ -1,0 +1,1 @@
+Here should be plugins, which were declared in configs\plugins.cfg
