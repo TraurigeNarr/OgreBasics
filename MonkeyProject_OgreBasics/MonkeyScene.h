@@ -18,6 +18,7 @@ class MonkeyScene : public InputSubscriber
 
   private:
     void _CreateScene();
+    void _CreateColourCubeMesh();
 
   public:
     MonkeyScene(OgreFramework& i_ogre_framework);
