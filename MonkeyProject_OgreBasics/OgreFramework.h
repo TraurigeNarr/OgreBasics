@@ -34,7 +34,6 @@ class OgreFramework : public Ogre::WindowEventListener
     OIS::Keyboard*				      mp_keyboard;
     OIS::Mouse*					        mp_mouse;
 
-    /*OgreBites::SdkTrayManager*	m_pTrayMgr;*/
     Ogre::SceneManager*			    mp_scene_manager;
     Ogre::Camera*               mp_camera;
     bool                        m_show_fps;

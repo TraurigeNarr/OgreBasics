@@ -147,9 +147,9 @@ void MonkeyScene::_CreateColourCubeMesh()
   /// Notify -Mesh object that it has been loaded
   msh->load();
 
-  MaterialPtr material = MaterialManager::getSingleton().create(
+ /* MaterialPtr material = MaterialManager::getSingleton().create(
     "Test/ColourTest", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-  material->getTechnique(0)->getPass(0)->setVertexColourTracking(TVC_AMBIENT);
+  material->getTechnique(0)->getPass(0)->setVertexColourTracking(TVC_AMBIENT);*/
   }
 
 void MonkeyScene::_CreateScene()
@@ -167,11 +167,11 @@ void MonkeyScene::_CreateScene()
   mp_camera_man->setTopSpeed(100);
 
   m_ogre_framework.GetViewport()->setCamera(p_camera);
-
+  Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
   // Create a Light and set its position
   Ogre::Light* p_light = p_scene_manager->createLight("MainLight");
   p_light->setPosition(20.0f, 80.0f, 50.0f);
-
+  
   // Create an Entity
   Ogre::Entity* p_ogre_head = p_scene_manager->createEntity("Head", "ogrehead.mesh");
 

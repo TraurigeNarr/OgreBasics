@@ -65,15 +65,18 @@ void OgreFramework::_InitializeReources()
     for (i = settings->begin(); i != settings->end(); ++i)
       {
       typeName = i->first;
-      archName = ".\\" + i->second;
+      archName = i->second;
       Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-        archName, typeName, secName);
+        archName, typeName, secName, true);
       }
     }
+  Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
   }
 
 void OgreFramework::_InitializeRenderSystem()
   {
+  if (mp_root->showConfigDialog())
+    return;
   Ogre::RenderSystemList::const_iterator r_it = mp_root->getAvailableRenderers().begin();
 
   // will throw if render system was not selected
