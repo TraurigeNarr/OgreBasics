@@ -58,10 +58,11 @@ class OgreFramework : public Ogre::WindowEventListener
     Ogre::SceneManager* CreateSceneManager(Ogre::SceneTypeMask i_mask, const std::string& i_name /* = "" */);
     Ogre::Camera*       CreateCamera(const std::string& i_name = "");
 
-    Ogre::Root*     GetRoot();
-    OIS::Keyboard*  GetKeyboard();
-    OIS::Mouse*     GetMouse();
-    Ogre::Viewport* GetViewport();
+    Ogre::Root*         GetRoot();
+    OIS::Keyboard*      GetKeyboard();
+    OIS::Mouse*         GetMouse();
+    Ogre::Viewport*     GetViewport();
+    Ogre::RenderTarget* GetRenderTarget();
 
   // Ogre::WindowEventListener
   public:

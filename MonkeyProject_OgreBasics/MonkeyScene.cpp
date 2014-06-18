@@ -1,12 +1,24 @@
 #include "stdafx.h"
 
 #include "MonkeyScene.h"
+#include "Application.h"
 #include "OgreFramework.h"
+#include "CEGUIFramework.h"
 
 #include <SdkCameraMan.h>
 
-MonkeyScene::MonkeyScene(OgreFramework& i_ogre_framework)
+//////////////////////////////////////////////////////////////////////////
+
+enum class UICommand : unsigned int
+  {
+  UC_EXIT
+  };
+
+//////////////////////////////////////////////////////////////////////////
+
+MonkeyScene::MonkeyScene(OgreFramework& i_ogre_framework, Application& i_application)
   : m_ogre_framework(i_ogre_framework)
+  , m_application(i_application)
   , mp_camera_man(nullptr)
   {
   _CreateColourCubeMesh();
@@ -15,7 +27,9 @@ MonkeyScene::MonkeyScene(OgreFramework& i_ogre_framework)
 
 MonkeyScene::~MonkeyScene()
   {
-
+  // destroy CEGUI windows no exit from scene
+  CEGUI::WindowManager::getSingletonPtr()->destroyWindow(mp_root_ui_window);
+  CEGUI::WindowManager::getSingletonPtr()->destroyAllWindows();
   }
 
 /*
@@ -319,7 +333,32 @@ void MonkeyScene::_CreateScene()
 
   p_cube_node->setInheritScale(true);
   p_cube_node->setScale(Ogre::Vector3(0.1f, 0.1f, 0.1f));
+  
+  _InitializeUI();
   }
+
+void MonkeyScene::_InitializeUI()
+  {
+  CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setImage("TaharezLook/MouseArrow");
+  CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
+  mp_root_ui_window = wmgr.createWindow("DefaultWindow", "MenuScreen");
+
+  CEGUI::Window* p_exit_button = wmgr.createWindow("TaharezLook/Button");
+  p_exit_button->setSize(CEGUI::USize(CEGUI::UDim(0.15f, 0), CEGUI::UDim(0.05f, 0)));
+  p_exit_button->setPosition(CEGUI::UVector2(CEGUI::UDim(0.1f/*relational to screen*/, 0/*pixel mode*/), 
+                          CEGUI::UDim(0.1f,0)));
+  p_exit_button->setText("Exit");
+  p_exit_button->setID(static_cast<CEGUI::uint>(UICommand::UC_EXIT));
+
+  p_exit_button->subscribeEvent(CEGUI::PushButton::EventClicked,
+    CEGUI::Event::Subscriber(&MonkeyScene::ButtonHandler, this));
+
+  mp_root_ui_window->addChild(p_exit_button);
+
+  CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(mp_root_ui_window);
+  }
+
+//////////////////////////////////////////////////////////////////////////
 
 bool MonkeyScene::KeyPressed(const OIS::KeyEvent &keyEventRef)
   {
@@ -348,5 +387,18 @@ bool MonkeyScene::MousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id
 bool MonkeyScene::MouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id) 
   {
   mp_camera_man->injectMouseUp(evt, id);
+  return true;
+  }
+
+bool MonkeyScene::ButtonHandler(const CEGUI::EventArgs &e)
+  {
+  const CEGUI::WindowEventArgs* args = static_cast<const CEGUI::WindowEventArgs*>(&e);
+  UICommand ui_command = static_cast<UICommand>(args->window->getID());
+  switch (ui_command)
+    {
+    case UICommand::UC_EXIT:
+      m_application.Shutdown();
+      break;
+    }
   return true;
   }

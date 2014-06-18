@@ -36,6 +36,9 @@
     <ClCompile Include="MonkeyScene.cpp">
       <Filter>Application</Filter>
     </ClCompile>
+    <ClCompile Include="CEGUIFramework.cpp">
+      <Filter>Frameworks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -58,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="MonkeyScene.h">
       <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="CEGUIFramework.h">
+      <Filter>Frameworks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

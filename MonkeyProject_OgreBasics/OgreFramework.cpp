@@ -4,6 +4,10 @@
 
 #include <cassert>
 
+#include <CEGUI/System.h>
+#include <CEGUI/Size.h>
+#include <CEGUI/GUIContext.h>
+
 namespace
   {
 
@@ -220,6 +224,14 @@ void OgreFramework::windowResized(Ogre::RenderWindow* rw)
   if (mp_camera)
     mp_camera->setAspectRatio(Ogre::Real(rw->getWidth()) / Ogre::Real(rw->getHeight()));
 
+  // this should be in CEGUI framework so OGREFramework do not depend on something
+  // but it is not critical
+  CEGUI::Sizef new_size(rw->getWidth(), rw->getHeight());
+  CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
+
+  CEGUI::System::getSingleton().notifyDisplaySizeChanged(new_size);
+  context.getMouseCursor().notifyDisplaySizeChanged(new_size);
+
   for (unsigned short i = 0; i < mp_render_window->getNumViewports(); ++i)
     mp_render_window->getViewport(i)->update();
   }
@@ -227,4 +239,11 @@ void OgreFramework::windowResized(Ogre::RenderWindow* rw)
 bool OgreFramework::windowClosing(Ogre::RenderWindow* rw)
   {
   return false;
+  }
+
+//////////////////////////////////////////////////////////////////////////
+
+Ogre::RenderTarget* OgreFramework::GetRenderTarget()
+  {
+  return mp_render_window;
   }

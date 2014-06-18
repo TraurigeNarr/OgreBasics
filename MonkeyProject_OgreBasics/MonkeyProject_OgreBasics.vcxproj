@@ -35,10 +35,12 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\..\ThirdParty\props\OGRE.props" />
+    <Import Project="..\..\..\..\ThirdParty\props\CEGUI.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\..\ThirdParty\props\OGRE.props" />
+    <Import Project="..\..\..\..\ThirdParty\props\CEGUI.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -86,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="CEGUIFramework.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MonkeyProject_OgreBasics.cpp" />
     <ClCompile Include="MonkeyScene.cpp" />
@@ -98,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="CEGUIFramework.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputSubscriber.h" />
     <ClInclude Include="MonkeyScene.h" />
